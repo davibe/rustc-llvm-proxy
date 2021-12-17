@@ -5,10 +5,11 @@ extern crate syn;
 #[macro_use]
 extern crate failure;
 
-use std::env;
+use std::{env, fs, io::ErrorKind, path::PathBuf};
 
 fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
+    let mut manifest_dir: PathBuf = env::var("CARGO_MANIFEST_DIR").unwrap().into();
 
     // Dummy declarations for RLS.
     if std::env::var("CARGO").unwrap_or_default().ends_with("rls") {
@@ -26,6 +27,15 @@ fn main() {
         .expect("Unable to parse 'llvm-sys' crate")
         .write_declarations(&format!("{}/llvm_gen.rs", out_dir))
         .expect("Unable to write generated LLVM declarations");
+
+    // Workaround for `cargo package`
+    // `cargo metadata` creates a new Cargo.lock file, which needs removing
+    manifest_dir.push("Cargo.lock");
+    if let Err(e) = fs::remove_file(&manifest_dir) {
+        if e.kind() != ErrorKind::NotFound {
+            panic!("unexpected error clearing local Cargo.lock: {}", e);
+        }
+    }
 }
 
 #[derive(Debug)]
