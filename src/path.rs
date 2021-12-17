@@ -13,7 +13,7 @@ pub fn find_lib_path() -> Result<PathBuf, Error> {
     }
 
     for directory in &directories {
-        if let Some(library) = find_library_in_directory(&directory) {
+        if let Some(library) = find_library_in_directory(directory) {
             return Ok(library);
         }
     }

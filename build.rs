@@ -1,5 +1,3 @@
-#![deny(warnings)]
-
 extern crate cargo_metadata;
 extern crate quote;
 extern crate syn;
@@ -121,7 +119,7 @@ mod llvm {
                     "create_proxy!({}; {}; {});",
                     decl.name,
                     decl.ret_ty,
-                    decl.args.trim_end_matches(",")
+                    decl.args.trim_end_matches(',')
                 )?;
             }
 
@@ -137,20 +135,18 @@ mod llvm {
                 .packages
                 .into_iter()
                 .find(|item| item.name == "llvm-sys")
-                .ok_or(format_err!(
+                .ok_or_else(|| format_err!(
                     "Unable to find 'llvm-sys' in the crate metadata"
                 ))?;
 
-            let llvm_lib_rs_path = PathBuf::from(
-                llvm_dependency
+            let llvm_lib_rs_path = llvm_dependency
                     .targets
                     .into_iter()
                     .find(|item| item.name == "llvm-sys")
-                    .ok_or(format_err!(
+                    .ok_or_else(||format_err!(
                         "Unable to find lib target for 'llvm-sys' crate"
                     ))?
-                    .src_path,
-            );
+                    .src_path;
 
             Ok(llvm_lib_rs_path.parent().unwrap().into())
         }
@@ -205,8 +201,7 @@ mod llvm {
             let abi_name = self
                 .name
                 .as_ref()
-                .map(|item| item.value())
-                .unwrap_or(String::new());
+                .map(|item| item.value()).unwrap_or_default();
 
             abi_name == "C"
         }
