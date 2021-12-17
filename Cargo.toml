@@ -1,20 +1,14 @@
 [package]
-name = "rustc-llvm-proxy"
-version = "0.2.0"
-authors = ["Denys Zariaiev <denys.zariaiev@gmail.com>"]
-license = "MIT"
-edition = "2018"
-
-readme = "README.md"
+name = "aya-rustc-llvm-proxy"
+version = "0.3.0"
+authors = ["Alessandro Decina <alessandro.d@gmail.com>"]
 description = "Dynamically proxy LLVM calls into Rust own shared library"
-repository = "https://github.com/denzp/rustc-llvm-proxy"
-categories = ["development-tools::build-utils", "external-ffi-bindings"]
+license = "MIT"
 keywords = ["llvm"]
-
-[badges]
-appveyor = { repository = "denzp/rustc-llvm-proxy", branch = "master", service = "github" }
-travis-ci = { repository = "denzp/rustc-llvm-proxy", branch = "master" }
-maintenance = { status = "passively-maintained" }
+categories = ["development-tools::build-utils", "external-ffi-bindings"]
+repository = "https://github.com/denzp/rustc-llvm-proxy"
+readme = "README.md"
+edition = "2018"
 
 [dependencies]
 libloading = "0.5"
