@@ -1,5 +1,5 @@
+extern crate aya_rustc_llvm_proxy;
 extern crate llvm_sys;
-extern crate rustc_llvm_proxy;
 
 use llvm_sys::core::*;
 use std::ffi::{CStr, CString};

@@ -135,18 +135,14 @@ mod llvm {
                 .packages
                 .into_iter()
                 .find(|item| item.name == "llvm-sys")
-                .ok_or_else(|| format_err!(
-                    "Unable to find 'llvm-sys' in the crate metadata"
-                ))?;
+                .ok_or_else(|| format_err!("Unable to find 'llvm-sys' in the crate metadata"))?;
 
             let llvm_lib_rs_path = llvm_dependency
-                    .targets
-                    .into_iter()
-                    .find(|item| item.name == "llvm-sys")
-                    .ok_or_else(||format_err!(
-                        "Unable to find lib target for 'llvm-sys' crate"
-                    ))?
-                    .src_path;
+                .targets
+                .into_iter()
+                .find(|item| item.name == "llvm-sys")
+                .ok_or_else(|| format_err!("Unable to find lib target for 'llvm-sys' crate"))?
+                .src_path;
 
             Ok(llvm_lib_rs_path.parent().unwrap().into())
         }
@@ -201,7 +197,8 @@ mod llvm {
             let abi_name = self
                 .name
                 .as_ref()
-                .map(|item| item.value()).unwrap_or_default();
+                .map(|item| item.value())
+                .unwrap_or_default();
 
             abi_name == "C"
         }

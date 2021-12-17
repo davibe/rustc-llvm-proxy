@@ -1,14 +1,22 @@
 #![deny(warnings)]
-#![allow(non_snake_case, unused_imports, unused_macros, deprecated, clippy::missing_safety_doc)]
+#![allow(
+    non_snake_case,
+    unused_imports,
+    unused_macros,
+    deprecated,
+    clippy::missing_safety_doc
+)]
 
+//! This is a **fork** of the [rustc-llvm-proxy](https://github.com/denzp/rustc-llvm-proxy) crate.
+//!
 //! Dynamically proxy LLVM calls into Rust own shared library! 🎉
 //!
 //! ## Use cases
 //! Normally there is no much need for the crate, except a couple of exotic cases:
 //!
-//! * Your crate is some kind build process helper that leverages LLVM (e.g. [ptx-linker](https://github.com/denzp/rust-ptx-linker)),
-//! * Your crate needs to stay up to date with Rust LLVM version (again [ptx-linker](https://github.com/denzp/rust-ptx-linker)),
-//! * You would prefer not to have dependencies on host LLVM libs (as always [ptx-linker](https://github.com/denzp/rust-ptx-linker)).
+//! * Your crate is some kind build process helper that leverages LLVM (e.g. [bpf-linker](https://github.com/aya-rs/bpf-linker)),
+//! * Your crate needs to stay up to date with Rust LLVM version (again [bpf-linker](https://github.com/aya-rs/bpf-linker)),
+//! * You would prefer not to have dependencies on host LLVM libs (as always [bpf-linker](https://github.com/aya-rs/bpf-linker)).
 //!
 //! ## Usage
 //! First, you need to make sure no other crate links your binary against system LLVM library.
@@ -28,7 +36,7 @@
 //! ```
 //!
 //! ``` rust
-//! extern crate rustc_llvm_proxy;
+//! extern crate aya_rustc_llvm_proxy;
 //! ```
 
 #[macro_use]
