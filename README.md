@@ -1,5 +1,6 @@
 # Aya Rustc LLVM Proxy
 
+[![Build](https://github.com/aya-rs/rustc-llvm-proxy/actions/workflows/ci.yml/badge.svg)](https://github.com/aya-rs/rustc-llvm-proxy/actions/workflows/ci.yml)
 [![Current Version](https://img.shields.io/crates/v/aya-rustc-llvm-proxy.svg)](https://crates.io/crates/aya-rustc-llvm-proxy)
 [![Docs](https://docs.rs/aya-rustc-llvm-proxy/badge.svg)](https://docs.rs/aya-rustc-llvm-proxy)
 
