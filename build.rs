@@ -129,7 +129,14 @@ mod llvm {
                     "create_proxy!({}; {}; {});",
                     decl.name,
                     decl.ret_ty,
-                    decl.args.trim_end_matches(',')
+                    decl.args
+                        // We cannot use `Err` as an argument name provided to
+                        // the macro, it conflicts with the `Err` tuple variant
+                        // from Rust std preludes. That `Err` comes from the
+                        // `pub type` declaration, where using it allowed.
+                        // https://play.rust-lang.org/?gist=ef464634c9ee2193c08f6d97bdba5dd2
+                        .replace("Err :", "Error :")
+                        .trim_end_matches(',')
                 )?;
             }
 
