@@ -10,7 +10,7 @@ const POSSIBLE_BACKENDS: &[&str] = &[
 ];
 
 fn get_native_arch() -> Result<String> {
-    let output = Command::new("rustc").args(&["--print", "cfg"]).output()?;
+    let output = Command::new("rustc").args(["--print", "cfg"]).output()?;
     let buf = BufReader::new(output.stdout.as_slice());
     for line in buf.lines() {
         let line = line?;
